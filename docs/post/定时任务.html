@@ -93,49 +93,58 @@
         
         
         <div class="post-content">
-            <p>package services</p>
-<p>import (
-&ldquo;github.com/astaxie/beego/context&rdquo;
-&ldquo;github.com/robfig/cron/v3&rdquo;
-)</p>
-<p>var cronFunc = cron.New(cron.WithChain(
-Recover(cron.DefaultLogger),
-))
-var EntryID cron.EntryID</p>
-<p>// 启动 定时任务
-func StartCronFunc(spec string) {
-var err error
-EntryID, err = cronFunc.AddFunc(spec, CronFunc)
-if err != nil {
-panic(err)
-}
-cronFunc.Start()
-}</p>
-<p>//重启 定时任务
-func RestartCronFunc(spec string) {
-var err error
-cronFunc.Remove(EntryID)
-EntryID, err = cronFunc.AddFunc(spec, CronFunc)
-if err != nil {
-panic(err)
-}
-}</p>
-<p>//定时任务执行代码
-func CronFunc() {</p>
-<p>}</p>
-<p>//捕捉异常
-func Recover(logger cron.Logger) cron.JobWrapper {
-return func(j cron.Job) cron.Job {
-return cron.FuncJob(func() {
-defer PanicRecover2(nil)
-j.Run()
-})
-}
-}</p>
-<p>//异常处理
-func PanicRecover2(context *context.Context) {</p>
-<p>}</p>
+            <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">services</span>
 
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;github.com/astaxie/beego/context&#34;</span>
+	<span style="color:#e6db74">&#34;github.com/robfig/cron/v3&#34;</span>
+)
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">cronFunc</span> = <span style="color:#a6e22e">cron</span>.<span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">cron</span>.<span style="color:#a6e22e">WithChain</span>(
+	<span style="color:#a6e22e">Recover</span>(<span style="color:#a6e22e">cron</span>.<span style="color:#a6e22e">DefaultLogger</span>),
+))
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">EntryID</span> <span style="color:#a6e22e">cron</span>.<span style="color:#a6e22e">EntryID</span>
+
+<span style="color:#75715e">// 启动 定时任务
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">StartCronFunc</span>(<span style="color:#a6e22e">spec</span> <span style="color:#66d9ef">string</span>) {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
+	<span style="color:#a6e22e">EntryID</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">cronFunc</span>.<span style="color:#a6e22e">AddFunc</span>(<span style="color:#a6e22e">spec</span>, <span style="color:#a6e22e">CronFunc</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		panic(<span style="color:#a6e22e">err</span>)
+	}
+	<span style="color:#a6e22e">cronFunc</span>.<span style="color:#a6e22e">Start</span>()
+}
+
+<span style="color:#75715e">//重启 定时任务
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">RestartCronFunc</span>(<span style="color:#a6e22e">spec</span> <span style="color:#66d9ef">string</span>) {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>
+	<span style="color:#a6e22e">cronFunc</span>.<span style="color:#a6e22e">Remove</span>(<span style="color:#a6e22e">EntryID</span>)
+	<span style="color:#a6e22e">EntryID</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">cronFunc</span>.<span style="color:#a6e22e">AddFunc</span>(<span style="color:#a6e22e">spec</span>, <span style="color:#a6e22e">CronFunc</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+		panic(<span style="color:#a6e22e">err</span>)
+	}
+}
+
+<span style="color:#75715e">//定时任务执行代码
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">CronFunc</span>() {
+
+}
+
+<span style="color:#75715e">//捕捉异常
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Recover</span>(<span style="color:#a6e22e">logger</span> <span style="color:#a6e22e">cron</span>.<span style="color:#a6e22e">Logger</span>) <span style="color:#a6e22e">cron</span>.<span style="color:#a6e22e">JobWrapper</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">j</span> <span style="color:#a6e22e">cron</span>.<span style="color:#a6e22e">Job</span>) <span style="color:#a6e22e">cron</span>.<span style="color:#a6e22e">Job</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cron</span>.<span style="color:#a6e22e">FuncJob</span>(<span style="color:#66d9ef">func</span>() {
+			<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">PanicRecover2</span>(<span style="color:#66d9ef">nil</span>)
+			<span style="color:#a6e22e">j</span>.<span style="color:#a6e22e">Run</span>()
+		})
+	}
+}
+
+<span style="color:#75715e">//异常处理
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">PanicRecover2</span>(<span style="color:#a6e22e">context</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+
+}
+</code></pre></div>
         </div>
 
         
