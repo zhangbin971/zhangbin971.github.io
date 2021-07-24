@@ -8,12 +8,12 @@
     <language>zh-CN</language>
     <lastBuildDate>Sat, 24 Jul 2021 14:58:20 +0800</lastBuildDate><atom:link href="https://zhangbin971.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>新的</title>
-      <link>https://zhangbin971.github.io/post/diyi.html</link>
+      <title>cron</title>
+      <link>https://zhangbin971.github.io/post/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.html</link>
       <pubDate>Sat, 24 Jul 2021 14:58:20 +0800</pubDate>
       
-      <guid>https://zhangbin971.github.io/post/diyi.html</guid>
-      <description>测试123456465465</description>
+      <guid>https://zhangbin971.github.io/post/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1.html</guid>
+      <description>package services import ( &amp;ldquo;github.com/astaxie/beego/context&amp;rdquo; &amp;ldquo;github.com/robfig/cron/v3&amp;rdquo; ) var cronFunc = cron.New(cron.WithChain( Recover(cron.DefaultLogger), )) var EntryID cron.EntryID // 启动 定</description>
     </item>
     
     <item>
