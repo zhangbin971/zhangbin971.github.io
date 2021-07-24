@@ -1,6 +1,6 @@
-baseURL = "https://blog.superen.xyz/"
+baseURL = "https://zhangbin971.github.io/"
 languageCode = "zh-CN"
-title = "en's blog"
+title = "副标题"
 
 theme = "maupassant"
 

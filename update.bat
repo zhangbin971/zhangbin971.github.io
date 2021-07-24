@@ -6,8 +6,8 @@ RMDIR /S /Q  docs
 del /S /F /Q public
 RMDIR /S /Q  public
 hugo
+git config core.autocrlf false
 ren public docs
-copy CNAME docs
 git pull
 git add .
 git commit -m %a%
