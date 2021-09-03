@@ -16,5 +16,14 @@
       <description>package services import ( &amp;#34;github.com/astaxie/beego/context&amp;#34; &amp;#34;github.com/robfig/cron/v3&amp;#34; ) var cronFunc = cron.New(cron.WithChain( Recover(cron.DefaultLogger), )) var EntryID cron.EntryID // 启动 定</description>
     </item>
     
+    <item>
+      <title>postgresql</title>
+      <link>https://zhangbin971.github.io/post/postgresql.html</link>
+      <pubDate>Sat, 24 Jul 2021 14:58:20 +0800</pubDate>
+      
+      <guid>https://zhangbin971.github.io/post/postgresql.html</guid>
+      <description>SELECT left ( &#39;C01-01-01&#39;, length(&#39;C01-01-01&#39;) - POSITION ( &#39;-&#39; IN reverse(&#39;C01-01-01&#39;) )) 取C01-01</description>
+    </item>
+    
   </channel>
 </rss>
