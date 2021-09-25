@@ -13,7 +13,7 @@
       <pubDate>Sat, 24 Jul 2021 14:58:20 +0800</pubDate>
       
       <guid>https://zhangbin971.github.io/post/postgresql.html</guid>
-      <description>SELECT left ( &#39;C01-01-01&#39;, length(&#39;C01-01-01&#39;) - POSITION ( &#39;-&#39; IN reverse(&#39;C01-01-01&#39;) )) 取C01-01</description>
+      <description>SELECT left ( &#39;C01-01-01&#39;, length(&#39;C01-01-01&#39;) - POSITION ( &#39;-&#39; IN reverse(&#39;C01-01-01&#39;) )) 取C01-01 索</description>
     </item>
     
   </channel>

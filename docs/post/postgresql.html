@@ -94,7 +94,26 @@
         
         <div class="post-content">
             <pre><code class="language-plsql" data-lang="plsql">SELECT left ( 'C01-01-01', length('C01-01-01') -  POSITION ( '-' IN  reverse('C01-01-01') ))  取C01-01
-</code></pre>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#960050;background-color:#1e0010">索引</span>:
+<span style="color:#960050;background-color:#1e0010">普通索引</span>  <span style="color:#960050;background-color:#1e0010">即一个索引只包含单个列，一个表可以有多个单列索引</span>
+<span style="color:#960050;background-color:#1e0010">唯一索引：索引列的值必须唯一，但允许有空值</span>
+<span style="color:#960050;background-color:#1e0010">复合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并</span>
+<span style="color:#960050;background-color:#1e0010">聚簇索引</span>(<span style="color:#960050;background-color:#1e0010">聚集索引</span>)<span style="color:#960050;background-color:#1e0010">：并不是一种单独的索引类型，而是一种数据存储方式。具体细节取决于不同的实现，</span>InnoDB的聚簇索引其实就是在同一个结构中保存了B<span style="color:#f92672">-</span>Tree索引(<span style="color:#960050;background-color:#1e0010">技术上来说是</span>B<span style="color:#f92672">+</span>Tree)<span style="color:#960050;background-color:#1e0010">和数据行。</span>
+<span style="color:#960050;background-color:#1e0010">非聚簇索引：不是聚簇索引，就是非聚簇索引</span>
+
+<span style="color:#960050;background-color:#1e0010">联合索引</span>  <span style="color:#960050;background-color:#1e0010">最左原则</span>
+<span style="color:#960050;background-color:#1e0010">创建</span> abc <span style="color:#960050;background-color:#1e0010">三列的</span> <span style="color:#960050;background-color:#1e0010">索引</span> <span style="color:#960050;background-color:#1e0010">如果</span> a<span style="color:#f92672">=?</span> <span style="color:#66d9ef">and</span> b<span style="color:#f92672">=?</span> <span style="color:#66d9ef">and</span> <span style="color:#66d9ef">c</span><span style="color:#f92672">=?</span> <span style="color:#960050;background-color:#1e0010">不管</span>abc <span style="color:#960050;background-color:#1e0010">条件判断属性怎么放</span>  <span style="color:#960050;background-color:#1e0010">都会索引</span>abc <span style="color:#960050;background-color:#1e0010">三列</span>
+<span style="color:#960050;background-color:#1e0010">如果</span> a<span style="color:#f92672">=?</span> <span style="color:#66d9ef">and</span> b<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">and</span> <span style="color:#66d9ef">c</span><span style="color:#f92672">=?</span> <span style="color:#960050;background-color:#1e0010">只会索引</span>ab <span style="color:#960050;background-color:#1e0010">两列</span>
+
+<span style="color:#960050;background-color:#1e0010">最左匹配原则</span>
+<span style="color:#960050;background-color:#1e0010">联合索引</span>(A,B,<span style="color:#66d9ef">C</span>)<span style="color:#960050;background-color:#1e0010">，最左优先，以最左边的为起点任何连续的索引都能匹配上。</span>
+<span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">）遇到范围查询</span>(<span style="color:#f92672">&gt;</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">between</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">like</span>)<span style="color:#960050;background-color:#1e0010">就会停止匹配。</span>
+<span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">）因为</span>Mysql中有查询优化器<span style="color:#960050;background-color:#1e0010">，会自动优化查询顺序，因此</span>A,B,C顺序调换不影响查询结果<span style="color:#960050;background-color:#1e0010">。</span>
+<span style="color:#ae81ff">3</span><span style="color:#960050;background-color:#1e0010">）没有从最左边开始，最后查询没有用到索引，用的是全表扫描</span>
+
+
+<span style="color:#960050;background-color:#1e0010">创建索引是为了更高效的</span>  <span style="color:#960050;background-color:#1e0010">查询数据</span>
+</code></pre></div>
         </div>
 
         
@@ -182,6 +201,10 @@
     </li>
     
     <li>
+        <a href="https://zhangbin971.github.io/post/linux.html" title="linux">linux</a>
+    </li>
+    
+    <li>
         <a href="https://zhangbin971.github.io/post/postgresql.html" title="postgresql">postgresql</a>
     </li>
     
@@ -196,6 +219,8 @@
     
     <li><a href="https://zhangbin971.github.io/categories/cron-catch-error.html">cron-catch-error (1)</a></li>
     
+    <li><a href="https://zhangbin971.github.io/categories/linux.html">linux (1)</a></li>
+    
     <li><a href="https://zhangbin971.github.io/categories/sql.html">sql (1)</a></li>
     
 </ul>
@@ -206,6 +231,8 @@
 <div class="tagcloud">
     
     <a href="https://zhangbin971.github.io/tags/cron-catch-error.html">cron-catch-error</a>
+    
+    <a href="https://zhangbin971.github.io/tags/linux.html">linux</a>
     
     <a href="https://zhangbin971.github.io/tags/sql.html">sql</a>
     
